@@ -21,7 +21,7 @@ const endpoints = [
         method: 'GET',
         url: 'https://candidates-api.contalink.com/V1/invoices/',
         headers: {
-            'Authorization': '${__ENV.API_TOKEN}',
+            'Authorization': '${API_TOKEN}',
             'Content-Type': 'application/json'
         },
         payload: null // GET No RequestBody
