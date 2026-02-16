@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Contalink Sistema de Facturas Copy" tests="22" time="6.334">
+  <testsuite name="01 GET - Invoices / GET Invoice 200 OK" id="ca03830c-581f-4719-9d48-d6703ad824f6" timestamp="2026-02-16T17:07:58.858Z" tests="5" failures="0" errors="0" time="2.562">
+    <testcase name="Status code is 200" time="2.562" classname="01GetInvoicesGetInvoice200Ok"/>
+    <testcase name="Response has invoices array" time="2.562" classname="01GetInvoicesGetInvoice200Ok"/>
+    <testcase name="Invoices array is not empty" time="2.562" classname="01GetInvoicesGetInvoice200Ok"/>
+    <testcase name="Each invoice has required fields" time="2.562" classname="01GetInvoicesGetInvoice200Ok"/>
+    <testcase name="Pagination structure is correct" time="2.562" classname="01GetInvoicesGetInvoice200Ok"/>
+  </testsuite>
+  <testsuite name="01 GET - Invoices / GET Invoice by ID 200 OK" id="58736a27-747a-4680-b71d-fa2e69c0be5a" timestamp="2026-02-16T17:07:58.858Z" tests="2" failures="2" errors="0" time="1.056">
+    <testcase name="Status code is 200" time="1.056" classname="01GetInvoicesGetInvoiceById200Ok">
+      <failure type="AssertionFailure" message="expected response to have status code 200 but got 404">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 3419be7a-bd65-4b90-bdeb-7b7264d41977.]]>
+        <![CDATA[Collection name: Contalink Sistema de Facturas Copy.]]>
+        <![CDATA[Request name: 01 GET - Invoices / GET Invoice by ID 200 OK.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 404.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 404
+   at Object.eval sandbox-script.js:1:2).]]>
+      </failure>
+    </testcase>
+    <testcase name="Response has id" time="1.056" classname="01GetInvoicesGetInvoiceById200Ok">
+      <failure type="AssertionFailure" message="expected { error: 'Factura no encontrada' } to have property 'id'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 3419be7a-bd65-4b90-bdeb-7b7264d41977.]]>
+        <![CDATA[Collection name: Contalink Sistema de Facturas Copy.]]>
+        <![CDATA[Request name: 01 GET - Invoices / GET Invoice by ID 200 OK.]]>
+        <![CDATA[Test description: Response has id.]]>
+        <![CDATA[Error message: expected { error: 'Factura no encontrada' } to have property 'id'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected { error: 'Factura no encontrada' } to have property 'id'
+   at Object.eval sandbox-script.js:2:2).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="01 GET - Invoices / GET Invoice 200 OK Invoices" id="7aa89039-4ad1-478d-a93b-80aeb620609f" timestamp="2026-02-16T17:07:58.858Z" tests="1" failures="0" errors="0" time="0.896">
+    <testcase name="Chequeo de invoices" time="0.896" classname="01GetInvoicesGetInvoice200OkInvoices"/>
+  </testsuite>
+  <testsuite name="01 GET - Invoices / GET Invoice 200 OK Pages" id="8f7acf20-f551-4350-b401-cb8db2d2f121" timestamp="2026-02-16T17:07:58.858Z" tests="1" failures="0" errors="0" time="0.346">
+    <testcase name="Chequeo de invoices" time="0.346" classname="01GetInvoicesGetInvoice200OkPages"/>
+  </testsuite>
+  <testsuite name="01 GET - Invoices / GET Invoice 401 Unauthorized" id="843311c4-bea3-402e-9915-4065401f56a2" timestamp="2026-02-16T17:07:58.858Z" tests="1" failures="0" errors="0" time="0.186">
+    <testcase name="Status code is 401" time="0.186" classname="01GetInvoicesGetInvoice401Unauthorized"/>
+  </testsuite>
+  <testsuite name="01 GET - Invoices / GET Invoice 404 Not Found Resource" id="c6f54949-3a01-4276-a766-12e2193caeef" timestamp="2026-02-16T17:07:58.858Z" tests="1" failures="0" errors="0" time="0.113">
+    <testcase name="Status code is 404" time="0.113" classname="01GetInvoicesGetInvoice404NotFoundResource"/>
+  </testsuite>
+  <testsuite name="01 GET - Invoices / GET Invoice 40 Not Found Invoice" id="8274feae-e0a6-4d4b-bec6-07494c62bfc3" timestamp="2026-02-16T17:07:58.858Z" tests="3" failures="0" errors="0" time="0.074">
+    <testcase name="Status code is 404" time="0.074" classname="01GetInvoicesGetInvoice40NotFoundInvoice"/>
+    <testcase name="Response contains error property" time="0.074" classname="01GetInvoicesGetInvoice40NotFoundInvoice"/>
+    <testcase name="Error message is correct" time="0.074" classname="01GetInvoicesGetInvoice40NotFoundInvoice"/>
+  </testsuite>
+  <testsuite name="02 POST - Invoces / POST Invoice 422 Unprocessable Content" id="d57bbb63-458d-468b-b910-473def0384cf" timestamp="2026-02-16T17:07:58.858Z" tests="3" failures="0" errors="0" time="0.070">
+    <testcase name="Status code is 422" time="0.070" classname="02PostInvocesPostInvoice422UnprocessableContent"/>
+    <testcase name="Response contains error property" time="0.070" classname="02PostInvocesPostInvoice422UnprocessableContent"/>
+    <testcase name="Error message is correct" time="0.070" classname="02PostInvocesPostInvoice422UnprocessableContent"/>
+  </testsuite>
+  <testsuite name="02 POST - Invoces / POST Invoice 401 Unauthorized" id="87b60d37-64d4-4d9a-a514-d6a38b58ab27" timestamp="2026-02-16T17:07:58.858Z" tests="2" failures="0" errors="0" time="0.079">
+    <testcase name="Status code is 401" time="0.079" classname="02PostInvocesPostInvoice401Unauthorized"/>
+    <testcase name="Error message is correct" time="0.079" classname="02PostInvocesPostInvoice401Unauthorized"/>
+  </testsuite>
+  <testsuite name="02 POST - Invoces / POST Invoice 404 Not Found Resource" id="c8e478a3-13f4-47cc-9339-63391c1afec2" timestamp="2026-02-16T17:07:58.858Z" tests="1" failures="0" errors="0" time="0.081">
+    <testcase name="Status code is 404" time="0.081" classname="02PostInvocesPostInvoice404NotFoundResource"/>
+  </testsuite>
+  <testsuite name="03 PATCH - Invoices / PATCH Invoice by ID 200 OK" id="ee4c32ef-955c-4a33-89d2-a30a999176d6" timestamp="2026-02-16T17:07:58.858Z" tests="1" failures="1" errors="0" time="0.071">
+    <testcase name="Status code is 200" time="0.071" classname="03PatchInvoicesPatchInvoiceById200Ok">
+      <failure type="AssertionFailure" message="expected response to have status code 200 but got 422">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 3419be7a-bd65-4b90-bdeb-7b7264d41977.]]>
+        <![CDATA[Collection name: Contalink Sistema de Facturas Copy.]]>
+        <![CDATA[Request name: 03 PATCH - Invoices / PATCH Invoice by ID 200 OK.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 422.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 422
+   at Object.eval sandbox-script.js:1:11).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="03 PATCH - Invoices / PATCH Invoice by ID 422 Unprocessable Content" id="2c75dc26-6e9d-49e0-9c78-3bd3a4c13616" timestamp="2026-02-16T17:07:58.858Z" tests="3" failures="0" errors="0" time="0.068">
+    <testcase name="Status code is 422" time="0.068" classname="03PatchInvoicesPatchInvoiceById422UnprocessableContent"/>
+    <testcase name="Response contains error property" time="0.068" classname="03PatchInvoicesPatchInvoiceById422UnprocessableContent"/>
+    <testcase name="Error message is correct" time="0.068" classname="03PatchInvoicesPatchInvoiceById422UnprocessableContent"/>
+  </testsuite>
+  <testsuite name="03 PATCH - Invoices / PATCH Invoice 401 Unauthorized" id="eee0701d-549b-4eb2-8643-aa7947fd8370" timestamp="2026-02-16T17:07:58.858Z" tests="2" failures="0" errors="0" time="0.089">
+    <testcase name="Status code is 401" time="0.089" classname="03PatchInvoicesPatchInvoice401Unauthorized"/>
+    <testcase name="Error message is correct" time="0.089" classname="03PatchInvoicesPatchInvoice401Unauthorized"/>
+  </testsuite>
+  <testsuite name="03 PATCH - Invoices / PATCH Invoice 404 Not Found Resource" id="835fbe27-cd27-4be0-9919-58d4877a8b54" timestamp="2026-02-16T17:07:58.858Z" tests="1" failures="0" errors="0" time="0.072">
+    <testcase name="Status code is 404" time="0.072" classname="03PatchInvoicesPatchInvoice404NotFoundResource"/>
+  </testsuite>
+  <testsuite name="04 PUT - Invoices / PATCH Invoice by ID 200 OK" id="a04b557d-75e9-471b-9a99-12ad19eb7647" timestamp="2026-02-16T17:07:58.858Z" tests="1" failures="1" errors="0" time="0.072">
+    <testcase name="Status code is 200" time="0.072" classname="04PutInvoicesPatchInvoiceById200Ok">
+      <failure type="AssertionFailure" message="expected response to have status code 200 but got 422">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 3419be7a-bd65-4b90-bdeb-7b7264d41977.]]>
+        <![CDATA[Collection name: Contalink Sistema de Facturas Copy.]]>
+        <![CDATA[Request name: 04 PUT - Invoices / PATCH Invoice by ID 200 OK.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 422.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 422
+   at Object.eval sandbox-script.js:1:15).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="04 PUT - Invoices / PATCH Invoice 422 Unprocessable Content" id="6e2d084b-0cb6-41b3-859b-cdfdce2b822e" timestamp="2026-02-16T17:07:58.858Z" tests="3" failures="0" errors="0" time="0.070">
+    <testcase name="Status code is 422" time="0.070" classname="04PutInvoicesPatchInvoice422UnprocessableContent"/>
+    <testcase name="Response contains error property" time="0.070" classname="04PutInvoicesPatchInvoice422UnprocessableContent"/>
+    <testcase name="Error message is correct" time="0.070" classname="04PutInvoicesPatchInvoice422UnprocessableContent"/>
+  </testsuite>
+  <testsuite name="04 PUT - Invoices / PATCH Invoice 401 Unauthorized" id="9f71775e-f10c-430f-93bc-faee24c9018f" timestamp="2026-02-16T17:07:58.858Z" tests="2" failures="0" errors="0" time="0.064">
+    <testcase name="Status code is 401" time="0.064" classname="04PutInvoicesPatchInvoice401Unauthorized"/>
+    <testcase name="Error message is correct" time="0.064" classname="04PutInvoicesPatchInvoice401Unauthorized"/>
+  </testsuite>
+  <testsuite name="04 PUT - Invoices / PATCH Invoice 404 Not Found Resource" id="10c4148c-1ffe-48c7-98d8-d3773f7d0f4b" timestamp="2026-02-16T17:07:58.858Z" tests="1" failures="0" errors="0" time="0.068">
+    <testcase name="Status code is 404" time="0.068" classname="04PutInvoicesPatchInvoice404NotFoundResource"/>
+  </testsuite>
+  <testsuite name="05 DELETE - Invoices / Delete Invoice by ID 200 OK" id="1fac2c74-9002-4385-8f60-303d1510a830" timestamp="2026-02-16T17:07:58.858Z" tests="1" failures="1" errors="0" time="0.067">
+    <testcase name="Status code is 200" time="0.067" classname="05DeleteInvoicesDeleteInvoiceById200Ok">
+      <failure type="AssertionFailure" message="expected response to have status code 200 but got 422">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 3419be7a-bd65-4b90-bdeb-7b7264d41977.]]>
+        <![CDATA[Collection name: Contalink Sistema de Facturas Copy.]]>
+        <![CDATA[Request name: 05 DELETE - Invoices / Delete Invoice by ID 200 OK.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 422.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 422
+   at Object.eval sandbox-script.js:1:19).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="05 DELETE - Invoices / Delete Invoice by ID 401 Unauthorized" id="bf99dd56-e0ef-4482-8cdf-e5ac02cca4e0" timestamp="2026-02-16T17:07:58.858Z" tests="2" failures="0" errors="0" time="0.070">
+    <testcase name="Status code is 401" time="0.070" classname="05DeleteInvoicesDeleteInvoiceById401Unauthorized"/>
+    <testcase name="Error message is correct" time="0.070" classname="05DeleteInvoicesDeleteInvoiceById401Unauthorized"/>
+  </testsuite>
+  <testsuite name="05 DELETE - Invoices / Delete Invoice by ID 422 Unprocessable Content" id="1d8ad86d-068f-4bd7-94ed-d31f96e55e7e" timestamp="2026-02-16T17:07:58.858Z" tests="3" failures="0" errors="0" time="0.091">
+    <testcase name="Status code is 422" time="0.091" classname="05DeleteInvoicesDeleteInvoiceById422UnprocessableContent"/>
+    <testcase name="Response contains error property" time="0.091" classname="05DeleteInvoicesDeleteInvoiceById422UnprocessableContent"/>
+    <testcase name="Error message is correct" time="0.091" classname="05DeleteInvoicesDeleteInvoiceById422UnprocessableContent"/>
+  </testsuite>
+  <testsuite name="05 DELETE - Invoices / Delete Invoice by ID 404 Not Found" id="4df1690e-ed14-4655-b01d-9a460a7df177" timestamp="2026-02-16T17:07:58.858Z" tests="1" failures="1" errors="0" time="0.069">
+    <testcase name="Status code is 200" time="0.069" classname="05DeleteInvoicesDeleteInvoiceById404NotFound">
+      <failure type="AssertionFailure" message="expected response to have status code 200 but got 404">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 3419be7a-bd65-4b90-bdeb-7b7264d41977.]]>
+        <![CDATA[Collection name: Contalink Sistema de Facturas Copy.]]>
+        <![CDATA[Request name: 05 DELETE - Invoices / Delete Invoice by ID 404 Not Found.]]>
+        <![CDATA[Test description: Status code is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 404.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 404
+   at Object.eval sandbox-script.js:1:22).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,43 +1,84 @@
-name: Playwright E2E Tests
+name: QA Contalink CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  test:
+  qa-ci:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        browser: [chromium, firefox, webkit]
+        node-version: [20.x]
+
+    env:
+      PLAYWRIGHT_REPORT_DIR: playwright-report
+      NEWMAN_REPORT_DIR: newman-results
+      K6_DURATION: 30s
+      K6_RPS: 20
 
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm ci
+          npx playwright install --with-deps
+          npm install -g newman
+          sudo apt-get update
+          sudo apt-get install -y k6
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+      # ------------------------------
+      # Playwright E2E tests
+      # ------------------------------
+      - name: Run Playwright E2E Tests
+        run: |
+          npx playwright test --reporter=html
+        continue-on-error: false
 
-      - name: Run Playwright tests
-        run: npx playwright test --reporter=github
-        env:
-          CI: true
-
-      - name: Upload Playwright reports
-        if: failure()
+      - name: Upload Playwright Report
         uses: actions/upload-artifact@v3
         with:
           name: playwright-report
-          path: playwright-report/
+          path: ${{ env.PLAYWRIGHT_REPORT_DIR }}
+
+      # ------------------------------
+      # Newman API tests
+      # ------------------------------
+      - name: Run Postman API tests with Newman
+        run: |
+          mkdir -p ${{ env.NEWMAN_REPORT_DIR }}
+          newman run postman/collections/Contalink.postman_collection.json \
+            --env-var "Authorization=UXTY789@!!1" \
+            --reporters cli,junit \
+            --reporter-junit-export ${{ env.NEWMAN_REPORT_DIR }}/newman.xml
+        continue-on-error: false
+
+      - name: Upload Newman Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: newman-report
+          path: ${{ env.NEWMAN_REPORT_DIR }}
+
+      # ------------------------------
+      # k6 Performance Test
+      # ------------------------------
+      - name: Run k6 Performance Test
+        run: |
+          k6 run k6_invoices_test.js \
+            --duration=${{ env.K6_DURATION }} \
+            --rps=${{ env.K6_RPS }}
+
+      - name: Upload k6 Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: k6-report
+          path: k6-results/
