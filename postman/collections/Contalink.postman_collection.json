@@ -1,0 +1,1323 @@
+{
+  "info": {
+    "_postman_id": "3419be7a-bd65-4b90-bdeb-7b7264d41977",
+    "name": "Contalink Sistema de Facturas Copy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 GET - Invoices",
+      "item": [
+        {
+          "name": "GET Invoice 200 OK",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has invoices array\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"invoices\");",
+                  "    pm.expect(jsonData.invoices).to.be.an(\"array\");",
+                  "});",
+                  "",
+                  "pm.test(\"Invoices array is not empty\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.invoices.length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test(\"Each invoice has required fields\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    jsonData.invoices.forEach(invoice => {",
+                  "        pm.expect(invoice).to.have.property(\"id\");",
+                  "        pm.expect(invoice).to.have.property(\"invoiceNumber\");",
+                  "        pm.expect(invoice).to.have.property(\"total\");",
+                  "        pm.expect(invoice).to.have.property(\"invoiceDate\");",
+                  "        pm.expect(invoice).to.have.property(\"status\");",
+                  "        pm.expect(invoice).to.have.property(\"active\");",
+                  "    });",
+                  "});",
+                  "",
+                  "pm.test(\"Pagination structure is correct\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"pagination\");",
+                  "    pm.expect(jsonData.pagination).to.have.property(\"totalPages\");",
+                  "    pm.expect(jsonData.pagination).to.have.property(\"currentPage\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "040791eb-0439-442d-940c-355be488273c"
+              }
+            }
+          ],
+          "id": "ca03830c-581f-4719-9d48-d6703ad824f6",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Invoice by ID 200 OK",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response has id\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"id\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "1bfc749e-7461-4cf2-938f-8957bd6401e5"
+              }
+            }
+          ],
+          "id": "58736a27-747a-4680-b71d-fa2e69c0be5a",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/11681",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "11681"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Invoice 200 OK Invoices",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Chequeo de invoices\", function () {",
+                  "    if (jsonData.invoices.length === 0) {",
+                  "        console.log(\"La lista de invoices está vacía\");",
+                  "    } else {",
+                  "        console.log(\"La lista de invoices tiene \" + jsonData.invoices.length + \" elementos\");",
+                  "        pm.expect(jsonData.invoices.length).to.be.above(0);  // asegura que haya elementos",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "c20badf6-a369-4b1c-8bb2-861f31447def"
+              }
+            }
+          ],
+          "id": "7aa89039-4ad1-478d-a93b-80aeb620609f",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Invoice 200 OK Pages",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let jsonData = pm.response.json();",
+                  "",
+                  "pm.test(\"Chequeo de invoices\", function () {",
+                  "    if (jsonData.invoices.length === 0) {",
+                  "        console.log(\"La lista de invoices está vacía\");",
+                  "    } else {",
+                  "        console.log(\"La lista de invoices tiene \" + jsonData.invoices.length + \" elementos\");",
+                  "        pm.expect(jsonData.invoices.length).to.be.above(0);  // asegura que haya elementos",
+                  "    }",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "7b24b961-39af-4dbc-9168-6fc6b22d34f1"
+              }
+            }
+          ],
+          "id": "8f7acf20-f551-4350-b401-cb8db2d2f121",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/?page=2",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Invoice 401 Unauthorized",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "3f1bf6e4-f8b5-4dfb-a0e3-34d71b4a28cc"
+              }
+            }
+          ],
+          "id": "843311c4-bea3-402e-9915-4065401f56a2",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/11681",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "11681"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Invoice 404 Not Found Resource",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "c9441f94-5447-440d-960e-d49c9ec0af72"
+              }
+            }
+          ],
+          "id": "c6f54949-3a01-4276-a766-12e2193caeef",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "HEAD",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/Invoices/",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "Invoices",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Invoice 40 Not Found Invoice",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains error property\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"error\");",
+                  "});",
+                  "",
+                  "pm.test(\"Error message is correct\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.eql(\"Factura no encontrada\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "c1dcb56f-11c6-4507-a9b2-18246239e9be"
+              }
+            }
+          ],
+          "id": "8274feae-e0a6-4d4b-bec6-07494c62bfc3",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/1",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "7065bb0b-1730-4779-884e-6b8a49cd11dc"
+    },
+    {
+      "name": "02 POST - Invoces",
+      "item": [
+        {
+          "name": "POST Invoice 422 Unprocessable Content",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 422\", function () {",
+                  "    pm.response.to.have.status(422);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains error property\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"error\");",
+                  "});",
+                  "",
+                  "pm.test(\"Error message is correct\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.eql(\"El número de factura es requerido\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "5628ce6d-7698-4b80-b3f2-465b8beee66d"
+              }
+            }
+          ],
+          "id": "d57bbb63-458d-468b-b910-473def0384cf",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"invoiceNumber\": \"2026212211535\",\n    \"total\": 70.0,\n    \"invoiceDate\": \"15/02/2026 04:22 PM\",\n    \"status\": \"Vigente\",\n    \"active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Invoice 401 Unauthorized",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test(\"Error message is correct\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.eql(\"Unauthorized\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "2ee93332-bef6-4be7-a3b1-8b8275f71ba7"
+              }
+            }
+          ],
+          "id": "87b60d37-64d4-4d9a-a514-d6a38b58ab27",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"invoiceNumber\": \"2026212211535\",\n    \"total\": 70.0,\n    \"invoiceDate\": \"15/02/2026 04:22 PM\",\n    \"status\": \"Vigente\",\n    \"active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Invoice 404 Not Found Resource",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "b1e9e9be-9f24-4574-b6ef-5df6b981ff32"
+              }
+            }
+          ],
+          "id": "c8e478a3-13f4-47cc-9339-63391c1afec2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"invoiceNumber\": \"2026212211535\",\n    \"total\": 70.0,\n    \"invoiceDate\": \"15/02/2026 04:22 PM\",\n    \"status\": \"Vigente\",\n    \"active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoiceS",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoiceS"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "7975193b-279f-4f88-954f-c7b8faa6c999"
+    },
+    {
+      "name": "03 PATCH - Invoices",
+      "item": [
+        {
+          "name": "PATCH Invoice by ID 200 OK",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "271ad066-1b75-439c-a936-67f329a05a0d"
+              }
+            }
+          ],
+          "id": "ee4c32ef-955c-4a33-89d2-a30a999176d6",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total\": 70.00\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/11681",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "11681"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH Invoice by ID 422 Unprocessable Content",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 422\", function () {",
+                  "    pm.response.to.have.status(422);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains error property\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"error\");",
+                  "});",
+                  "",
+                  "pm.test(\"Error message is correct\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.eql(\"Factura no encontrada\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "d90fe004-b8d2-463a-96d4-c58c37cc63f7"
+              }
+            }
+          ],
+          "id": "2c75dc26-6e9d-49e0-9c78-3bd3a4c13616",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total\": 70.00\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/1",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH Invoice 401 Unauthorized",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test(\"Error message is correct\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.eql(\"Unauthorized\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "e8fc045c-972b-48bf-9c97-caca69d99fcc"
+              }
+            }
+          ],
+          "id": "eee0701d-549b-4eb2-8643-aa7947fd8370",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total\": 70.00\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/11681",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "11681"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH Invoice 404 Not Found Resource",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "20e19525-b857-42b2-aec3-84e86907b39c"
+              }
+            }
+          ],
+          "id": "835fbe27-cd27-4be0-9919-58d4877a8b54",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total\": 70.00\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/Invoices/11681",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "Invoices",
+                "11681"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "cfb688d9-2c9b-470c-be4f-a4ff52c88428"
+    },
+    {
+      "name": "04 PUT - Invoices",
+      "item": [
+        {
+          "name": "PATCH Invoice by ID 200 OK",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "5a28bfd3-917c-4502-b6fc-fb76d39b5eb6"
+              }
+            }
+          ],
+          "id": "a04b557d-75e9-471b-9a99-12ad19eb7647",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total\": 75.00,\n    \"status\":\"Vigente\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/11681",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "11681"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH Invoice 422 Unprocessable Content",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 422\", function () {",
+                  "    pm.response.to.have.status(422);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains error property\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"error\");",
+                  "});",
+                  "",
+                  "pm.test(\"Error message is correct\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.eql(\"Factura no encontrada\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "bb67eaa5-8f4d-44a3-93d3-7cdae3dfd651"
+              }
+            }
+          ],
+          "id": "6e2d084b-0cb6-41b3-859b-cdfdce2b822e",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total\": 75.00,\n    \"status\":\"Vigente\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/1",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH Invoice 401 Unauthorized",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test(\"Error message is correct\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.eql(\"Unauthorized\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "680bb27d-b8b7-4bda-912c-76bbbeb7bac0"
+              }
+            }
+          ],
+          "id": "9f71775e-f10c-430f-93bc-faee24c9018f",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total\": 75.00,\n    \"status\":\"Vigente\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/11681",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "11681"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH Invoice 404 Not Found Resource",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "cd399a01-5acb-449e-8c6f-503b02d90738"
+              }
+            }
+          ],
+          "id": "10c4148c-1ffe-48c7-98d8-d3773f7d0f4b",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"total\": 75.00,\n    \"status\":\"Vigente\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/Invoices/11681",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "Invoices",
+                "11681"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "c8ae6e40-d29f-43e4-8e09-62cd2396bd4c"
+    },
+    {
+      "name": "05 DELETE - Invoices",
+      "item": [
+        {
+          "name": "Delete Invoice by ID 200 OK",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "c61d54c5-cc62-49b6-94a6-9d42b237f504"
+              }
+            }
+          ],
+          "id": "1fac2c74-9002-4385-8f60-303d1510a830",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/11681",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "11681"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Invoice by ID 401 Unauthorized",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "",
+                  "pm.test(\"Error message is correct\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.eql(\"Unauthorized\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "59dc9870-a217-4b46-8a61-173a62509400"
+              }
+            }
+          ],
+          "id": "bf99dd56-e0ef-4482-8cdf-e5ac02cca4e0",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/11681",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "11681"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Invoice by ID 422 Unprocessable Content",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 422\", function () {",
+                  "    pm.response.to.have.status(422);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains error property\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property(\"error\");",
+                  "});",
+                  "",
+                  "pm.test(\"Error message is correct\", function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.eql(\"Factura no encontrada\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "06b2cf1e-b799-46e0-b5df-fb48dd2a8da7"
+              }
+            }
+          ],
+          "id": "1d8ad86d-068f-4bd7-94ed-d31f96e55e7e",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/1",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Invoice by ID 404 Not Found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "id": "2a6a960e-19a1-454f-a43d-7a4aa85aa89f"
+              }
+            }
+          ],
+          "id": "4df1690e-ed14-4655-b01d-9a460a7df177",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "UXTY789@!!1",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://candidates-api.contalink.com/V1/invoices/1.",
+              "protocol": "https",
+              "host": [
+                "candidates-api",
+                "contalink",
+                "com"
+              ],
+              "path": [
+                "V1",
+                "invoices",
+                "1."
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "b0a20249-7a06-49c1-9e7b-8a516bde0a17"
+    }
+  ]
+}
